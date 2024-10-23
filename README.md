@@ -2,10 +2,17 @@
 
 
 ## Description
-This terraform stack deploys and OKE cluster with two node pools:
-1. Generic instances node pool
-2. GPU instances node pool
+This terraform stack deploys:
+   - full infrastructure setup like networking, bastion, operator, policies for operator if needed
+   - an OKE cluster with two node pools:
+        1. Generic instances node pool
+        2. GPU instances node pool
+   - Kueue in kueue-system namespace of the cluster
+   - Kuberay-Operator in kuberay-operator namespace of the cluster
+This terraform stack configures:
+   - initial setup of kueue resources for quota management and priority scheduling in OKE
 
+## Usage
 Once uploaded in Oracle Resource Manager:
 1. You will select the compartment where you want to deploy the infrastructure, and the cluster name. Also you will be able to set advanced OKE settings like Kubernetes version and cluster networking type
 2. You can select if you want to create a new VCN for the OKE or you want to use an existing vcn. Recommended: use the option to create a new VCN which will have you in place all the networking configuration needed.
@@ -15,7 +22,4 @@ Once uploaded in Oracle Resource Manager:
 
 
 After you upload the ORM stack with the fields where you are required to provide input, you will do an apply and wait for the apply job to run the terraform code which will bring up the infrastructure and configuration.
-
-
-
 
