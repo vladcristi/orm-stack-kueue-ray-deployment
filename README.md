@@ -9,6 +9,8 @@ This terraform stack deploys:
         2. GPU instances node pool
    - Kueue in kueue-system namespace of the cluster
    - Kuberay-Operator in kuberay-operator namespace of the cluster
+
+   
 This terraform stack configures:
    - initial setup of kueue resources for quota management and priority scheduling in OKE
 
