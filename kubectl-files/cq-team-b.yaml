@@ -1,0 +1,28 @@
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: ClusterQueue
+metadata:
+  name: cq-team-b
+spec:
+  cohort: all-teams # cq-team-a and cq-team-b share the same cohort
+  namespaceSelector:
+    matchLabels:
+      kubernetes.io/metadata.name: team-b #Only team-a can submit jobs direclty to this queue, but will be able to share it through the cohort
+  resourceGroups:
+  - coveredResources: ["cpu", "memory", "nvidia.com/gpu"]
+    flavors:
+    - name: "default-flavor"
+      resources:
+      - name: "cpu"
+        nominalQuota: 2
+      - name: "memory"
+        nominalQuota: 8G
+      - name: "nvidia.com/gpu" # ClusterQueue only has quota for a single GPU.
+        nominalQuota: 1
+---
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: LocalQueue
+metadata:
+  namespace: team-b # LocalQueue under team-a namespace
+  name: lq-team-b
+spec:
+  clusterQueue: cq-team-b # Point to the ClusterQueue team-a-cq
