@@ -10,9 +10,9 @@ This terraform stack deploys:
    - Kueue in kueue-system namespace of the cluster
    - Kuberay-Operator in kuberay-operator namespace of the cluster
 
-   
+
 This terraform stack configures:
-   - initial setup of kueue resources for quota management and priority scheduling in OKE
+   - initial setup of kueue resources that will be used for examples in quota management and priority scheduling in OKE
 
 ## Usage
 Once uploaded in Oracle Resource Manager:
